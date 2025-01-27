@@ -2,57 +2,42 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-
+// Hero Section
 const HeroSection = () => {
   return (
-    <section className="bg-gray-50 py-12">
-      <div className="container mx-auto px-6 text-center md:text-left">
+    <section className="bg-gray-50 py-8 md:py-12">
+      <div className="container mx-auto px-4 sm:px-6 text-center md:text-left">
         {/* Title Section */}
-        <h1 className="text-3xl md:text-4xl font-extrabold text-blue-900 leading-tight">
-          Certified Cloud Applied Generative AI Engineer (GenEng) and Solopreneur<br />
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-blue-900 leading-tight">
+          Certified Cloud Applied Generative AI Engineer (GenEng) and Solopreneur
+          <br />
           Developing Billion-Dollar Valued Developers and Solopreneurs
         </h1>
-        <p className="mt-6 text-lg text-gray-700">
-          The pace of technological change is accelerating. Big players like Microsoft, Amazon, Google, and OpenAI 
-          are winning by providing infrastructure, large AI foundation models, frameworks, 3D Metaverse experiences, 
-          and massive distribution networks. Solopreneurs trained in this program will win by automating work typically 
-          outsourced to employees, directly connecting to customers, and developing vertical metaverses, paving the way 
-          for the first billion-dollar valued solopreneur businesses.
+        <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg text-gray-700 text-justify">
+          The pace of technological change is accelerating. Big players like Microsoft, Amazon, Google, and OpenAI are winning by
+          providing infrastructure, large AI foundation models, frameworks, 3D Metaverse experiences, and massive distribution
+          networks. Solopreneurs trained in this program will win by automating work typically outsourced to employees, directly
+          connecting to customers, and developing vertical metaverses, paving the way for the first billion-dollar valued solopreneur
+          businesses.
         </p>
-        <p className="mt-4 text-lg text-gray-700">
-          This program aims to train a new breed of solopreneurs. These individuals will adopt an ultra-lean business model, 
-          working independently without the need for employees or teams.
+        <p className="mt-2 sm:mt-4 text-sm sm:text-base md:text-lg text-gray-700 text-justify">
+          This program aims to train a new breed of solopreneurs. These individuals will adopt an ultra-lean business model, working
+          independently without the need for employees or teams.
         </p>
 
         {/* Images Section */}
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="rounded-lg overflow-hidden shadow-lg">
-            <Image
-              src="/Pic1.jpg"
-              alt="Money Background"
-              width={400}
-              height={200}
-              className="object-cover"
-            />
-          </div>
-          <div className="rounded-lg overflow-hidden shadow-lg">
-            <Image
-              src="/pic2.jpg"
-              alt="Solopreneur Image"
-              width={400}
-              height={200}
-              className="object-cover"
-            />
-          </div>
-          <div className="rounded-lg overflow-hidden shadow-lg">
-            <Image
-              src="/pic3.jpg"
-              alt="Students Learning"
-              width={400}
-              height={200}
-              className="object-cover"
-            />
-          </div>
+        <div className="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+          {["/Pic1.jpg", "/pic2.jpg", "/pic3.jpg"].map((src, index) => (
+            <div key={index} className="rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src={src}
+                alt={`Hero Image ${index + 1}`}
+                width={300}
+                height={200}
+                className="object-cover w-full h-40 md:h-56"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -74,48 +59,44 @@ const Carousel = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const totalCycles = 4;
 
   useEffect(() => {
     if (!isPaused) {
       const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => {
-          const nextIndex = (prevIndex + 2) % (images.length * totalCycles);
-          return nextIndex >= images.length ? 0 : nextIndex; // Reset to 0 after one full cycle
-        });
-      }, 2000);
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+      }, 3000);
 
       return () => clearInterval(interval);
     }
-  }, [isPaused]);
+  }, [isPaused, images.length]);
 
   return (
     <div
-      className="relative flex justify-center items-center w-full max-w-4xl h-[400px] bg-gray-100 overflow-hidden rounded-2xl mt-12 mx-auto"
+      className="relative flex justify-center items-center w-full max-w-6xl h-[200px] sm:h-[300px] md:h-[400px] bg-gray-100 overflow-hidden rounded-lg mt-8 sm:mt-12 mx-auto"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="flex w-full h-full">
+      <div className="flex w-full h-full gap-2 px-2 sm:gap-4 sm:px-4">
         {/* Display two images side by side */}
         <img
-          src={images[currentIndex % images.length]}
+          src={images[currentIndex]}
           alt={`Slide ${currentIndex}`}
-          className="w-1/2 h-full object-cover transition-transform duration-500"
+          className="w-1/2 h-full object-cover transition-transform duration-500 rounded-lg"
         />
         <img
           src={images[(currentIndex + 1) % images.length]}
           alt={`Slide ${(currentIndex + 1)}`}
-          className="w-1/2 h-full object-cover transition-transform duration-500"
+          className="w-1/2 h-full object-cover transition-transform duration-500 rounded-lg"
         />
       </div>
-      <div className="absolute bottom-4 flex justify-center w-full space-x-2">
-        {images.map((_, index) => (
+      <div className="absolute bottom-3 sm:bottom-4 flex justify-center w-full space-x-1 sm:space-x-2">
+        {images.slice(0, images.length / 2).map((_, index) => (
           <button
             key={index}
-            className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors duration-300 ${
               index === currentIndex % images.length ? "bg-blue-600" : "bg-gray-300"
             }`}
-            onClick={() => setCurrentIndex(index * 2)}
+            onClick={() => setCurrentIndex(index)}
           />
         ))}
       </div>
