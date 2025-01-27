@@ -2,16 +2,7 @@ import Image from 'next/image';
 
 export default function Hero1() {
   return (
-    <section
-      className="relative pt-32 pb-20"
-      style={{
-        backgroundImage: 'url(/governor-house-03.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center center',
-        backgroundAttachment: 'fixed',
-        height: '100vh',
-      }}
-    >
+    <section className=" mt-32 relative bg-cover bg-center" style={{ backgroundImage: "url('/governor-house-03.jpg')" }}>
       {/* White overlay with increased opacity */}
       <div className="absolute inset-0 bg-white opacity-80"></div> {/* Increased opacity for a more white background */}
 
@@ -47,7 +38,7 @@ export default function Hero1() {
         </div>
 
         {/* Right Image Section */}
-        <div className="md:w-1/2 mt-6 md:mt-0 flex justify-center md:justify-end">
+        <div className=" md:w-1/2 mt-6 md:mt-0 flex justify-center md:justify-end">
           <Image
             src="/Governor.png"
             alt="Hero Section Image"

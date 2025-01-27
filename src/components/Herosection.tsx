@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-// HeroSection Component
+
 const HeroSection = () => {
   return (
     <section className="bg-gray-50 py-12">

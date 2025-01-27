@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from 'react';
 import Link from 'next/link';
 import { IoMdMenu } from "react-icons/io";
@@ -23,6 +23,8 @@ export default function Navbar() {
           <Link href="/apply" className="hover:text-blue-300">Apply</Link>
           <Link href="/jobs" className="hover:text-blue-300">Jobs</Link>
           <Link href="/result" className="hover:text-blue-300">Result</Link>
+
+          {/* Dropdown for Courses */}
           <div className="relative group">
             <button className="hover:text-blue-300">Courses</button>
             <div className="absolute hidden group-hover:block bg-white text-black mt-1 rounded shadow-md">
@@ -39,21 +41,23 @@ export default function Navbar() {
         >
           <IoMdMenu className="h-6" />
         </button>
-
-        {/* Mobile Dropdown */}
-        {isMenuOpen && (
-          <div className="absolute top-16 left-0 w-full bg-blue-900 text-white shadow-md">
-            <nav className="flex flex-col space-y-3 px-6 py-4">
-              <Link href="/home" className="hover:text-blue-300">Home</Link>
-              <Link href="/apply" className="hover:text-blue-300">Apply</Link>
-              <Link href="/jobs" className="hover:text-blue-300">Jobs</Link>
-              <Link href="/result" className="hover:text-blue-300">Result</Link>
-              <Link href="/course1" className="hover:text-blue-300">Course 1</Link>
-              <Link href="/course2" className="hover:text-blue-300">Course 2</Link>
-            </nav>
-          </div>
-        )}
       </div>
+
+      {/* Mobile Dropdown Menu */}
+      {isMenuOpen && (
+        <div className="absolute top-16 left-0 w-full bg-blue-900 text-white shadow-md">
+          <nav className="flex flex-col space-y-3 px-6 py-4">
+            <Link href="/home" className="hover:text-blue-300">Home</Link>
+            <Link href="/apply" className="hover:text-blue-300">Apply</Link>
+            <Link href="/jobs" className="hover:text-blue-300">Jobs</Link>
+            <Link href="/result" className="hover:text-blue-300">Result</Link>
+
+            {/* Mobile Courses Links */}
+            <Link href="/course1" className="hover:text-blue-300">Course 1</Link>
+            <Link href="/course2" className="hover:text-blue-300">Course 2</Link>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
